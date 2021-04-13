@@ -1,4 +1,6 @@
 using CartApi.Data;
+using CartApi.Interfaces;
+using CartApi.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +28,8 @@ namespace CartApi
                 return ConnectionMultiplexer.Connect(config);
             });
             services.AddScoped<CartContext>();
+            services.AddScoped<ICartRepository, CartRepository>();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
